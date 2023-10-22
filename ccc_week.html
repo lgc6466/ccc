@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>금주의 책</title>
+    <link rel="stylesheet" type="text/css" href="ccc_week.css">
+</head>
+
+<body>
+    <div class="overlay"></div>
+    <div class="popup">
+        <div class="week">
+            <div class="week-book"><h4>금주의 책</h4></div>
+            <span class="close">&times;</span>
+        </div>
+        <hr>
+        <div class="book">
+            <div class="book-cover">
+                책 표지
+            </div>
+            <div class="book-explain">
+                <div class="book-title">
+                    <h1>책 제목</h1>
+                </div>
+                <div class="book-author">
+                    <h5>저자</h5>
+                </div>
+                <div class="book-review">
+                    <h4>동해물과 백두산이 마르고 닳도록
+                        하느님이 보우하사 우리나라 만세
+                    </h4>
+                </div>
+
+            </div>
+
+        </div>
+
+        <hr>
+        <div class="check-close">
+            <input type="checkbox" id="remember">
+            <label for="remember">오늘 하루 열지 않음</label>
+        </div>
+
+    </div>
+
+    <script>
+        document.querySelector('.close').addEventListener('click', function () {
+            document.querySelector('.popup').style.display = 'none';
+        });
+
+        document.querySelector('#remember').addEventListener('change', function () {
+            if (this.checked) {
+                var date = new Date();
+                date.setTime(date.getTime() + (24 * 60 * 60 * 1000)); // 쿠키 만료 시간 설정 (24시간)
+                document.cookie = 'popup_closed=true; expires=' + date.toUTCString() + '; path=/';
+            }
+        });
+    </script>
+
+</body>
+
+</html>
