@@ -18,13 +18,13 @@
     left: 50%;
     transform: translate(-50%, -50%);
     width: 400px;
-    background-color: #fcf9ff;
+    background-color: #fdfdff;
 }
 
 .week-book {
     padding-left: 15px;
     font-size: 20px;
-    color: #2E0062;
+    color: #373737;
 }
 
 .week {
@@ -40,7 +40,7 @@
     margin-bottom: 7px;
     margin-right: 5px;
     padding: 5px;
-    color: #2E0062
+    color: #373737
 }
 
 hr {
@@ -75,7 +75,7 @@ hr {
 
 .check-close {
     margin-bottom: 5px;
-    color: #2E0062;
+    color: #373737;
     margin-left: 10px;
 }
 

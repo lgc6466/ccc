@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>내 서재 표지보기</title>
+    <link rel="stylesheet" type="text/css" href="ccc_mylibrary.css">
+</head>
+
+<body>
+    <div class="main_container">
+        <header class="header_normal">
+            <div class="header_inner" id="inner1">
+
+                <div class="logo">
+                    <img src="ccc_image/logo.png">
+                </div>
+
+                <div class="search_wrap">
+                    <div class="search_box">
+                        <div class="search_">
+                            <input type="text" id="search" name="search" placeholder="안녕나는검색창" class="input_text"
+                                value="" maxlength="20" autocapitalize="off">
+                            <span><button type="search_button" id="searchbooks">
+                                    <img src="ccc_image/search.png" alt="search_button">
+                                </button>
+                            </span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="menu_wrap">
+                    <div class="library_icon"> <button type="books_button" id="mybooksmove">
+                            <img src="ccc_image/books.png" alt="search_button">
+                        </button> </div>
+                    <div class="mypage_icon"> <button type="user_button" id="userpagemove">
+                            <img src="ccc_image/user.png" alt="search_button">
+                        </button> </div>
+                </div>
+            </div>
+
+        </header>
+
+        <header class="header_fixed">
+            <div class="header_inner">
+
+                <div class="logo">
+                    <img src="ccc_image/logo.png">
+                </div>
+
+                <div class="search_wrap">
+                    <div class="search_box">
+                        <div class="search_">
+                            <input type="text" id="search" name="search" placeholder="안녕나는검색창" class="input_text"
+                                value="" maxlength="20" autocapitalize="off">
+                            <span><button type="search_button" id="searchbooks">
+                                    <img src="ccc_image/search.png" alt="search_button">
+                                </button>
+                            </span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="menu_wrap">
+                    <div class="library_icon"> <button type="books_button" id="mybooksmove">
+                            <img src="ccc_image/books.png" alt="search_button">
+                        </button> </div>
+                    <div class="mypage_icon"> <button type="user_button" id="userpagemove">
+                            <img src="ccc_image/user.png" alt="search_button">
+                        </button> </div>
+                </div>
+            </div>
+
+        </header>
+
+        <main>
+            <div class="libraryAll">
+                <div class="library">
+                    <span id="libraryTitle">내 서재</span>
+                    <span id="bookCount"></span>
+                </div>
+
+                <div class="library-convert">
+                    <div class="editAll">
+                        <button id='selectAllBtn' style='display:none;'>전체 선택</button>
+                        <button id='selectAllcancelBtn' style='display:none;'>전체 선택 취소</button>
+                        <div class="edit">
+                            <button id='editBtn'>편집</button>
+                            <button id='deleteBtn' style='display:none;'>삭제</button>
+                            <button id='cancelBtn' style='display:none;'>취소</button>
+                        </div>
+                    </div>
+
+                    <div class="listAll">
+                        <div class="library-list">
+                            <div class="library-cover">
+                                <button class="listCoverBtn" id='listCoverBtn'>
+                                    <img src="ccc_library/list-2.png" alt="Image 1" id='buttonImage1'>
+                                </button>
+                            </div>
+                            <div class="library-view">
+                                <button class="listViewBtn" id='listViewBtn'>
+                                    <img src="ccc_library/grid-1.png" alt="Image 2" id='buttonImage2'>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="concontainer">
+                    <div class="container1">
+                        <div class="book-container1" id="bookContainer">
+                            <!-- 동적으로 생성될 책 항목 -->
+                        </div>
+                    </div>
+                    <div class="container2">
+                        <div class="book-container2" id="bookContainer2">
+                            <!-- 동적으로 생성될 책 항목 -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+    <script src="ccc_mylibrary.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', (event) => {
+            var scrollPosition = window.pageYOffset;
+            var headerNormal = document.querySelector('.header_normal');
+            var headerFixed = document.querySelector('.header_fixed');
+            var headerNormalHeight = headerNormal.offsetHeight;
+
+            if (scrollPosition > headerNormalHeight) {
+                headerNormal.style.display = 'none';
+                headerFixed.style.display = 'block';
+            } else {
+                headerNormal.style.display = 'block';
+                headerFixed.style.display = 'none';
+            }
+        });
+        window.addEventListener('scroll', function () {
+            var scrollPosition = window.pageYOffset;
+            var headerNormal = document.querySelector('.header_normal');
+            var headerFixed = document.querySelector('.header_fixed');
+            var headerNormalHeight = headerNormal.offsetHeight;
+
+            if (scrollPosition > headerNormalHeight) {
+                headerNormal.style.display = 'none';
+                headerFixed.style.display = 'block';
+            } else {
+                headerNormal.style.display = 'block';
+                headerFixed.style.display = 'none';
+            }
+        });
+
+    </script>
+
+
+</body>
+
+</html>

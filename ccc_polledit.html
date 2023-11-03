@@ -3,14 +3,19 @@
 
 <head>
     <title>선호 장르 조사</title>
-    <link rel="stylesheet" type="text/css" href="ccc_poll.css">
+    <link rel="stylesheet" type="text/css" href="ccc_polledit.css">
 </head>
 
 <body onload="openPopup()">
     <div id="popup" class="popup">
         <div class="overlay"></div>
         <div class="content-title">
-            <h1>선호 장르 조사</h1>
+            <div class="title-container">
+                <h1>선호 장르 조사</h1>
+                <button class="close-btn" onclick="closePopup()">
+                    <img src="ccc_library/close.png" alt="close" />
+                </button>
+            </div>
         </div>
         <div class="content-explain">
             <h2>책 선호 장르를 선택해 주세요.</h2>
@@ -50,12 +55,10 @@
 
                 <div class='positioned-container'>
                     <p class="error-message" id='error-message'>적어도 하나의 장르를 선택해 주세요.</p>
-                    <button class="signup-btn" onclick="submitForm(event)">회원가입</button>
+                    <button class="signup-btn" onclick="submitForm(event)">수정</button>
                 </div>
             </form>
         </div>
-
-
 
     </div>
 
@@ -76,11 +79,16 @@
             }
         }
 
+        function closePopup() {
+            document.getElementById("popup").classList.remove("show-popup");
+        }
+
         document.querySelector(".overlay").addEventListener("click", function () {
             document.querySelector(".overlay").classList.remove("show-overlay");
             document.querySelector(".popup").classList.remove("show-popup");
         });
     </script>
+
 
 </body>
 
