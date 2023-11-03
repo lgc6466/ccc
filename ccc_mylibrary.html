@@ -4,6 +4,7 @@
 <head>
     <title>내 서재 표지보기</title>
     <link rel="stylesheet" type="text/css" href="ccc_mylibrary.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 </head>
 
 <body>
@@ -12,7 +13,9 @@
             <div class="header_inner" id="inner1">
 
                 <div class="logo">
-                    <img src="ccc_image/logo.png">
+                    <a href="ccc_main_log.html">
+                        <img src="ccc_image/logo.png" alt="로고">
+                    </a>
                 </div>
 
                 <div class="search_wrap">
@@ -32,9 +35,11 @@
                     <div class="library_icon"> <button type="books_button" id="mybooksmove">
                             <img src="ccc_image/books.png" alt="search_button">
                         </button> </div>
-                    <div class="mypage_icon"> <button type="user_button" id="userpagemove">
+                    <div class="mypage_icon">
+                        <button class="user_button" id="userpagemove1">
                             <img src="ccc_image/user.png" alt="search_button">
-                        </button> </div>
+                        </button>
+                    </div>
                 </div>
             </div>
 
@@ -64,13 +69,234 @@
                     <div class="library_icon"> <button type="books_button" id="mybooksmove">
                             <img src="ccc_image/books.png" alt="search_button">
                         </button> </div>
-                    <div class="mypage_icon"> <button type="user_button" id="userpagemove">
+                    <div class="mypage_icon">
+                        <button class="user_button" id="userpagemove2">
                             <img src="ccc_image/user.png" alt="search_button">
-                        </button> </div>
+                        </button>
+                    </div>
                 </div>
             </div>
 
         </header>
+
+        <a href="#" class="top-button" onclick="scrollToTop()">
+            <img src="ccc_image/up-arrow.png" alt="Top 버튼">
+        </a>
+
+        <!-- 마이페이지 화면 -->
+        <div class="sidebar">
+            <div class="myname"> <span><img src="ccc_image/ghost.png"></span><span class="username_wrap"><input
+                        type="text" value="ㅇㅇㅇ" class="username" id="username" readonly></span><span>님,</span> </div>
+            <!-- DB설정후 가져와서 문자넓이 만큼 width 수정해야함 자바 추가 -->
+            <div class="middle_wrap">
+                <div id="passwordSection" class="centered-content">
+                    <p class="password-text">비밀번호 재확인</p>
+                    <p class="password-reminder">보안을 위해 비밀번호를 한번 더 입력해 주세요.</p>
+                    <div class="input_row" id="pw_line">
+                        <input type="password" id="passwordInput" placeholder="비밀번호" title="비밀번호"
+                            class="input_text required-input" maxlength="16">
+                    </div><!-- 임의로 비밀번호 설정후 오류 메세지 출력 해놓음 php 후 수정필요-->
+                    <button type="submit" class="btn_login" id="passwordSubmit"><span class="btn_text">확
+                            인</span></button>
+                </div>
+
+                <div id="myPageSection" style="display: none;">
+                    <div class="mypage_wrap">
+                        <div class="dotted-line">
+                        </div>
+                        <div class="name_wrap">
+                            이름 <input type="text" id="name" /> <button type="submit" class="nameChange"
+                                id="nameChange"><span class="btn_text">변경</span></button>
+                        </div>
+                        <div class="dotted-line"> </div>
+                        <div class="id_fwrap">
+                            아이디 <input type="text" id="id" /> 성별 <input type="text" id="gender" />
+                        </div>
+                        <div class="dotted-line"></div>
+                        비밀번호 변경
+                        <div class="input_row" id="pw_line">
+                            <input type="password" id="currentPasswordInput" placeholder="현재 비밀번호" title="비밀번호"
+                                class="input_text required-input" maxlength="16"> <!-- 현재 비밀번호 오류는 Php 후 추가-->
+                        </div>
+                        <div class="input_row" id="pw_line">
+                            <input type="password" id="newpasswordInput" placeholder="새 비밀번호" title="비밀번호"
+                                class="input_text required-input" maxlength="16">
+                        </div><span id="currentPwError" style="color:red; display:none">현재 비밀번호와 같습니다.</span>
+                        <div class="input_row" id="pw_line">
+                            <input type="password" id="newpasswordcheck" placeholder="새 비밀번호 확인" title="비밀번호"
+                                class="input_text required-input" maxlength="16">
+                        </div> <span id="confirmPwError" style="color:red; display:none">비밀번호가 일치하지 않습니다.</span>
+                        <button type="submit" class="btn_login" id="changePassword"><span
+                                class="btn_text">변경</span></button>
+                        <div class="dotted-line"> </div>
+                        <div class="fq_wrap">
+                            선호장르 <input type="text" id="genre" /> <button type="submit" class="genreChange"
+                                id="genreChange"><span class="btn_text">변경</span></button>
+                        </div>
+                        <div class="dotted-line">
+                        </div>
+                        <button type="submit" class="btn_login" id="passwordSubmit"><span
+                                class="btn_text">변경</span></button>
+                    </div>
+
+                </div>
+                <button class="logout">로그아웃</button>
+                <button class="closebtn">닫기</button>
+            </div>
+        </div>
+        <div id="mask"></div>
+
+        <script>
+            document.addEventListener('DOMContentLoaded', (event) => {
+                var scrollPosition = window.pageYOffset;
+                var headerNormal = document.querySelector('.header_normal');
+                var headerFixed = document.querySelector('.header_fixed');
+                var smallNav1 = document.querySelector('.small_nav_1');
+
+                var totalHeight = headerNormal.offsetHeight + smallNav1.offsetHeight;
+
+                if (scrollPosition > totalHeight) {
+                    headerNormal.style.display = 'none';
+                    headerFixed.style.display = 'block';
+                } else {
+                    headerNormal.style.display = 'block';
+                    headerFixed.style.display = 'none';
+                }
+            });
+            window.addEventListener('scroll', function () {
+                var scrollPosition = window.pageYOffset;
+                var headerNormal = document.querySelector('.header_normal');
+                var headerFixed = document.querySelector('.header_fixed');
+                var smallNav1 = document.querySelector('.small_nav_1');
+
+                var totalHeight = headerNormal.offsetHeight + smallNav1.offsetHeight;
+
+                if (scrollPosition > totalHeight) {
+                    headerNormal.style.display = 'none';
+                    headerFixed.style.display = 'block';
+                } else {
+                    headerNormal.style.display = 'block';
+                    headerFixed.style.display = 'none';
+                }
+            });
+            //top스크롤 감지
+            function scrollToTop() {
+                var scrollOptions = {
+                    top: 0,
+                    behavior: 'smooth' // 스르륵 올라가는 애니메이션 효과
+                };
+                window.scrollTo(scrollOptions);
+            }
+
+            // 스크롤 이벤트 감지
+            window.addEventListener('scroll', function () {
+                var topButton = document.querySelector('.top-button');
+                if (window.pageYOffset > 200) {
+                    topButton.style.display = 'block';
+                } else {
+                    topButton.style.display = 'none';
+                }
+            });
+            //사이드메뉴
+            $(document).ready(function () {
+                $(".user_button").click(function () {
+                    var menuWidth = $(".sidebar").width(); // 사이드 메뉴의 너비 가져오기
+                    $("#mask").fadeIn(100);
+                    $(".sidebar").show().animate({ right: "0" });
+                    $(".page-container").animate({ marginLeft: -menuWidth }); // 페이지 전체를 왼쪽으로 이동
+
+                    // Disable scroll when sidebar is open
+                    $("body").css("overflow", "hidden");
+                });
+
+                $(".closebtn").click(function () {
+                    var menuWidth = $(".sidebar").width(); // 사이드 메뉴의 너비 가져오기
+                    $("#mask").fadeOut(100);
+                    $(".sidebar").hide().animate({ right: -menuWidth }); // 사이드 메뉴 원래 위치로 돌리기
+                    $(".page-container").animate({ marginLeft: "0" }); // 페이지 전체를 원래 위치로 돌리기
+
+                    // Enable scroll when sidebar is closed
+                    $("body").css("overflow", "auto");
+                });
+            });
+
+            //마이페이지 변경
+            $(document).ready(function () {
+                $(".user_button").click(function () {
+                    var btnOffset = $(this).offset();
+                    var btnWidth = $(this).outerWidth();
+                    var sidebarRight = $(window).width() - (btnOffset.left + btnWidth) - 2;
+
+                    $("#mask").fadeIn(100);
+
+                    // Reset password input and show the password section
+                    $("#passwordInput").val('');
+                    $("#passwordSection").show();
+
+                    // Hide myPage section initially
+                    $("#myPageSection").hide();
+
+                    $(".sidebar").css({ right: sidebarRight, width: '0px' }).show().animate({ width: "640px" }, 500);
+                });
+                //비밀번호 확인
+                $("#passwordSubmit").click(function (event) {
+                    event.preventDefault(); // Prevent the default form submission event
+                    if ($("#passwordInput").val() == '1234') { // 비밀번호 임의 설정
+                        $("#passwordSection").hide();
+                        $("#myPageSection").show();
+                    } else {
+                        alert('비밀번호가 일치하지 않습니다.');
+                    }
+                    $("#passwordInput").val('').focus();
+                });
+                $("#passwordInput").on('keypress', function (event) {
+                    if (event.which == 13) {
+                        $("#passwordSubmit").click();
+                    }
+                });
+
+
+                $(".closebtn").click(function () {
+                    $("#mask").fadeOut(100);
+
+                    $(".sidebar")
+                        .animate({ width: "0px" }, 500)
+                        .promise()
+                        .done(function () {
+                            $(this).hide();
+                            $(this).css("right", "");
+                            $(this).css("width", "");
+
+                            // When closing the sidebar reset both sections to initial state for next time.
+                            $('#myPageSection').hide();
+                            $('#passwordSection').show();
+                        });
+                });
+            });
+            //비밀번호 변경 
+            document.getElementById('changePassword').onclick = function () {
+                var currentPassword = document.getElementById('currentPasswordInput').value;
+                var newPassword = document.getElementById('newpasswordInput').value;
+                var confirmNewPassword = document.getElementById('newpasswordcheck').value;
+
+                if (currentPassword === newPassword) {
+                    document.getElementById('currentPwError').style.display = 'inline';
+                } else {
+                    document.getElementById('currentPwError').style.display = 'none';
+                }
+
+                if (newPassword !== confirmNewPassword) {
+                    document.getElementById('confirmPwError').style.display = 'inline';
+                } else {
+                    document.getElementById('confirmPwError').style.display = 'none';
+                }
+            };
+
+
+
+
+
+        </script>
 
         <main>
             <div class="libraryAll">
