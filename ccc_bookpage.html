@@ -1,0 +1,449 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <title>ㅊㅊㅊ-책페이지</title>
+    <link rel="stylesheet" type="text/css" href="ccc_bookpage.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+</head>
+
+<body>
+    <div class="main_container">
+        <header class="header_normal">
+            <div class="header_inner" id="inner1">
+
+                <div class="logo">
+                    <a href="ccc_main_log.html">
+                        <img src="ccc_image/logo.png" alt="로고">
+                    </a>
+                </div>
+
+                <div class="search_wrap">
+                    <div class="search_box">
+                        <div class="search_">
+                            <input type="text" id="search" name="search" placeholder="안녕나는검색창" class="input_text"
+                                value="" maxlength="20" autocapitalize="off">
+                            <span><button type="search_button" id="searchbooks">
+                                    <img src="ccc_image/search.png" alt="search_button">
+                                </button>
+                            </span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="menu_wrap">
+
+                    <div class="library_icon"> <button type="books_button" id="mybooksmove">
+                            <img src="ccc_image/books.png" alt="search_button">
+                        </button> </div>
+                    <div class="mypage_icon">
+                        <button class="user_button" id="userpagemove2">
+                            <img src="ccc_image/user.png" alt="search_button">
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+        </header>
+        <nav class="small_nav_1">
+        </nav>
+        <header class="header_fixed">
+            <div class="header_inner">
+
+                <div class="logo">
+                    <a href="ccc_main_log.html">
+                        <img src="ccc_image/logo.png" alt="로고">
+                    </a>
+                </div>
+
+                <div class="search_wrap">
+                    <div class="search_box">
+                        <div class="search_">
+                            <input type="text" id="search" name="search" placeholder="안녕나는검색창" class="input_text"
+                                value="" maxlength="20" autocapitalize="off">
+                            <span><button type="search_button" id="searchbooks">
+                                    <img src="ccc_image/search.png" alt="search_button">
+                                </button>
+                            </span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="menu_wrap">
+                    <div class="library_icon"> <button type="books_button" id="mybooksmove">
+                            <img src="ccc_image/books.png" alt="search_button">
+                        </button> </div>
+                    <div class="mypage_icon">
+                        <button class="user_button" id="userpagemove2">
+                            <img src="ccc_image/user.png" alt="search_button">
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+        </header>
+
+        <a href="#top" class="top-button">
+            <img src="ccc_image/up-arrow.png" alt="Top 버튼">
+        </a>
+
+        <!-- 마이페이지 화면 -->
+        <div class="sidebar">
+            <div class="myname"> <span><img src="ccc_image/ghost.png"></span><span class="username_wrap"><input
+                        type="text" value="ㅇㅇㅇ" class="username" id="username" readonly></span><span>님,</span> </div>
+            <!-- DB설정후 가져와서 문자넓이 만큼 width 수정해야함 자바 추가 -->
+            <div class="middle_wrap">
+                <div id="passwordSection" class="centered-content">
+                    <p class="password-text">비밀번호 재확인</p>
+                    <p class="password-reminder">보안을 위해 비밀번호를 한번 더 입력해 주세요.</p>
+                    <div class="input_row" id="pw_line">
+                        <input type="password" id="passwordInput" placeholder="비밀번호" title="비밀번호"
+                            class="input_text required-input" maxlength="16">
+                    </div><!-- 임의로 비밀번호 설정후 오류 메세지 출력 해놓음 php 후 수정필요-->
+                    <button type="submit" class="btn_login" id="passwordSubmit"><span class="btn_text">확
+                            인</span></button>
+                </div>
+
+                <div id="myPageSection" style="display: none;">
+                    <div class="mypage_wrap">
+                        <div class="dotted-line">
+                        </div>
+                        <div class="name_wrap">
+                            이름 <input type="text" id="name" /> <button type="submit" class="nameChange"
+                                id="nameChange"><span class="btn_text">변경</span></button>
+                        </div>
+                        <div class="dotted-line"> </div>
+                        <div class="id_fwrap">
+                            아이디 <input type="text" id="id" /> 성별 <input type="text" id="gender" />
+                        </div>
+                        <div class="dotted-line"></div>
+                        비밀번호 변경
+                        <div class="input_row" id="pw_line1">
+                            <input type="password" id="currentPasswordInput" placeholder="현재 비밀번호" title="비밀번호"
+                                class="input_text required-input" maxlength="16"> <!-- 현재 비밀번호 오류는 Php 후 추가-->
+                        </div>
+                        <div class="input_row" id="pw_line2">
+                            <input type="password" id="newpasswordInput" placeholder="새 비밀번호" title="비밀번호"
+                                class="input_text required-input" maxlength="16">
+                        </div><span id="currentPwError" style="color:red; display:none">현재 비밀번호와 같습니다.</span>
+                        <div class="input_row" id="pw_line3">
+                            <input type="password" id="newpasswordcheck" placeholder="새 비밀번호 확인" title="비밀번호"
+                                class="input_text required-input" maxlength="16">
+                        </div> <span id="confirmPwError" style="color:red; display:none">비밀번호가 일치하지 않습니다.</span>
+                        <button type="submit" class="btn_login" id="changePassword"><span
+                                class="btn_text">변경</span></button>
+                        <div class="dotted-line"> </div>
+                        <div class="fq_wrap">
+                            선호장르 <input type="text" id="genre" /> <button type="submit" class="genreChange"
+                                id="genreChange"><span class="btn_text">변경</span></button>
+                        </div>
+                        <div class="dotted-line">
+                        </div>
+                        <button type="submit" class="btn_login" id="passwordSubmit"><span
+                                class="btn_text">변경</span></button>
+                    </div>
+
+                </div>
+                <button class="logout">로그아웃</button>
+                <button class="closebtn">닫기</button>
+            </div>
+        </div>
+        <div id="mask"></div>
+
+        <script>
+            document.addEventListener('DOMContentLoaded', (event) => {
+                var scrollPosition = window.pageYOffset;
+                var headerNormal = document.querySelector('.header_normal');
+                var headerFixed = document.querySelector('.header_fixed');
+                var smallNav1 = document.querySelector('.small_nav_1');
+
+                var totalHeight = headerNormal.offsetHeight + smallNav1.offsetHeight;
+
+                if (scrollPosition > totalHeight) {
+                    headerNormal.style.display = 'none';
+                    headerFixed.style.display = 'block';
+                } else {
+                    headerNormal.style.display = 'block';
+                    headerFixed.style.display = 'none';
+                }
+            });
+            window.addEventListener('scroll', function () {
+                var scrollPosition = window.pageYOffset;
+                var headerNormal = document.querySelector('.header_normal');
+                var headerFixed = document.querySelector('.header_fixed');
+                var smallNav1 = document.querySelector('.small_nav_1');
+
+                var totalHeight = headerNormal.offsetHeight + smallNav1.offsetHeight;
+
+                if (scrollPosition > totalHeight) {
+                    headerNormal.style.display = 'none';
+                    headerFixed.style.display = 'block';
+                } else {
+                    headerNormal.style.display = 'block';
+                    headerFixed.style.display = 'none';
+                }
+            });
+
+            //top스크롤 감지
+            window.addEventListener('scroll', function () {
+                var topButton = document.querySelector('.top-button');
+                if (window.pageYOffset > 150) {
+                    topButton.style.display = 'block';
+                } else {
+                    topButton.style.display = 'none';
+                }
+            });
+
+            //사이드메뉴
+            $(document).ready(function () {
+                $(".user_button").click(function () {
+                    var menuWidth = $(".sidebar").width(); // 사이드 메뉴의 너비 가져오기
+                    $("#mask").fadeIn(100);
+                    $(".sidebar").show().animate({ right: "0" });
+                    $(".page-container").animate({ marginLeft: -menuWidth }); // 페이지 전체를 왼쪽으로 이동
+
+                    // Disable scroll when sidebar is open
+                    $("body").css("overflow", "hidden");
+                });
+
+                $(".closebtn").click(function () {
+                    var menuWidth = $(".sidebar").width(); // 사이드 메뉴의 너비 가져오기
+                    $("#mask").fadeOut(100);
+                    $(".sidebar").hide().animate({ right: -menuWidth }); // 사이드 메뉴 원래 위치로 돌리기
+                    $(".page-container").animate({ marginLeft: "0" }); // 페이지 전체를 원래 위치로 돌리기
+
+                    // Enable scroll when sidebar is closed
+                    $("body").css("overflow", "auto");
+                });
+            });
+
+            //마이페이지 변경
+            $(document).ready(function () {
+                $(".user_button").click(function () {
+                    var btnOffset = $(this).offset();
+                    var btnWidth = $(this).outerWidth();
+                    var sidebarRight = $(window).width() - (btnOffset.left + btnWidth) - 2;
+
+                    $("#mask").fadeIn(100);
+
+                    // Reset password input and show the password section
+                    $("#passwordInput").val('');
+                    $("#passwordSection").show();
+
+                    // Hide myPage section initially
+                    $("#myPageSection").hide();
+
+                    $(".sidebar").css({ right: sidebarRight, width: '0px' }).show().animate({ width: "640px" }, 500);
+                });
+                //비밀번호 확인
+                $("#passwordSubmit").click(function (event) {
+                    event.preventDefault(); // Prevent the default form submission event
+                    if ($("#passwordInput").val() == '1234') { // 비밀번호 임의 설정
+                        $("#passwordSection").hide();
+                        $("#myPageSection").show();
+                    } else {
+                        alert('비밀번호가 일치하지 않습니다.');
+                    }
+                    $("#passwordInput").val('').focus();
+                });
+                $("#passwordInput").on('keypress', function (event) {
+                    if (event.which == 13) {
+                        $("#passwordSubmit").click();
+                    }
+                });
+
+
+                $(".closebtn").click(function () {
+                    $("#mask").fadeOut(100);
+
+                    $(".sidebar")
+                        .animate({ width: "0px" }, 500)
+                        .promise()
+                        .done(function () {
+                            $(this).hide();
+                            $(this).css("right", "");
+                            $(this).css("width", "");
+
+                            // When closing the sidebar reset both sections to initial state for next time.
+                            $('#myPageSection').hide();
+                            $('#passwordSection').show();
+                        });
+                });
+            });
+            //비밀번호 변경 
+            document.getElementById('changePassword').onclick = function () {
+                var currentPassword = document.getElementById('currentPasswordInput').value;
+                var newPassword = document.getElementById('newpasswordInput').value;
+                var confirmNewPassword = document.getElementById('newpasswordcheck').value;
+
+                if (currentPassword === newPassword) {
+                    document.getElementById('currentPwError').style.display = 'inline';
+                } else {
+                    document.getElementById('currentPwError').style.display = 'none';
+                }
+
+                if (newPassword !== confirmNewPassword) {
+                    document.getElementById('confirmPwError').style.display = 'inline';
+                } else {
+                    document.getElementById('confirmPwError').style.display = 'none';
+                }
+            };
+
+            document.getElementById('mybooksmove').addEventListener('click', function () {
+                window.location.href = 'ccc_mylibrary.html';
+            });
+
+        </script>
+
+
+
+
+        <main>
+            <div class="todaybooks_wrap">
+                <div class="book_intro">
+                    <img src="ccc_image/double-quotes .png" alt="Left Image" class="side-image">
+                    <p class="bintro">음악 속에서 새로운 의미를 만들어낸다는 점이 NCT의 특별함이라고 생각해요.</p>
+                    <img src="ccc_image/double-quotes (1).png" alt="Right Image" class="side-image">
+                </div>
+
+                <div class="book_cover_wrap">
+                    <img src="ccc_bookcover/아레나 옴므+(2023년 11월호).jpg" alt="book cover image" class="book_cover" />
+                </div>
+                <div class="book_info_wrap">
+                    <div class="book_info">
+                        <div class="category_wrap">
+                            <p class="category">분야 : <span class="category_db">잡지</span></p>
+                        </div>
+                        <div class="title_wrap">
+                            <p class="title"> 아레나 옴므+(2023년 11월호) </p>
+                        </div>
+                        <div class="info_wrap">
+                            <p class="author">아레나옴므 편집부 저자(글)</p>
+                            <p class="publisher">서울문화</p>
+                            <p class="date">2023년 10월 20일</p>
+                        </div>
+                    </div>
+                    <div class="libraryBtn_wrap">
+                        <button class="libraryBtn" id="libraryBtn">
+                            <div class="button_content">
+                                <img id="libraryIcon" src="ccc_image/bookmarks.png" alt="내서재 담기 아이콘">
+                                <span class="button_text">내 서재 담기</span>
+                            </div>
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="monthbooks_wrap">
+                <div class="bcontent_wrap">
+                    <div class="book_description">
+                        <h2>작품 소개</h2>
+                        <div class="description_box">
+                            <p class="description_content">블랙칼라 워커를 위한 국내 최초의 남성 패션지 아레나 옴므 플러스.</p>
+                            <p class="summary">줄거리</p>
+                            <p class="description_more" id="descriptionMore">주요기사 : NCT 도영18p </p>
+                            <button class="expand_btn" id="expandBtn">펼치기▼</button>
+                        </div>
+                    </div>
+                    <div class="best_category">
+                        <div class="best_category_wrap">
+                            <h2>분야 베스트</h2>
+                            <ul class="best_list">
+                                <li>
+                                    <div class="number_image_wrapper">
+                                        <img src="ccc_image/1.png" alt="1번">
+                                    </div>
+                                    <a href="페이지1의_링크">
+                                        <span class="text_wrapper">보그(2023년 10월호)(E형)</span>
+                                    </a>
+                                </li>
+                                <div class="dotted-line"></div>
+                                <li>
+                                    <div class="number_image_wrapper">
+                                        <img src="ccc_image/2.png" alt="2번">
+                                    </div>
+                                    <a href="페이지2의_링크">
+                                        <span class="text_wrapper">보나몽(2023년 10월호)</span>
+                                    </a>
+                                </li>
+                                <div class="dotted-line"></div>
+                                <li>
+                                    <div class="number_image_wrapper">
+                                        <img src="ccc_image/3.png" alt="3번">
+                                    </div>
+                                    <a href="페이지3의_링크">
+                                        <span class="text_wrapper">아레나 옴므+(2023년 11월호)</span>
+                                    </a>
+                                </li>
+                                <div class="dotted-line"></div>
+                                <li>
+                                    <div class="number_image_wrapper">
+                                        <img src="ccc_image/4.png" alt="4번">
+                                    </div>
+                                    <a href="페이지4의_링크">
+                                        <span class="text_wrapper">초등독서평설(2023년 10월호)</span>
+                                    </a>
+                                </li>
+                                <div class="dotted-line"></div>
+                                <li>
+                                    <div class="number_image_wrapper">
+                                        <img src="ccc_image/5.png" alt="5번">
+                                    </div>
+                                    <a href="페이지5의_링크">
+                                        <span class="text_wrapper">게이머즈(2023년 10월 283호)</span>
+                                    </a>
+                                </li>
+                                <div class="dotted-line"></div>
+                            </ul>
+
+
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </main>
+        <script>
+            document.addEventListener("DOMContentLoaded", function () {
+                var libraryBtn = document.getElementById("libraryBtn");
+                var libraryIcon = document.getElementById("libraryIcon");
+                var defaultImage = "ccc_image/bookmarks.png";
+                var changedImage = "ccc_image/bookmarkson.png";
+
+                libraryBtn.addEventListener("click", function () {
+                    if (libraryIcon.src.includes(defaultImage)) {
+                        libraryIcon.src = changedImage;
+                    } else {
+                        libraryIcon.src = defaultImage;
+                    }
+                });
+            });
+
+
+            window.onload = function () {
+                document.getElementById("descriptionMore").style.display = "none";
+            }
+
+            document.getElementById("expandBtn").onclick = function () {
+                var moreContent = document.getElementById("descriptionMore");
+                if (moreContent.style.display === "none") {
+                    moreContent.style.display = "block"; // 펼치기 버튼을 클릭하면 줄거리 내용이 보이도록 설정
+                    this.innerText = "접기▲"; // 버튼 텍스트를 '접기'로 변경
+                } else {
+                    moreContent.style.display = "none"; // 이미 줄거리 내용이 보이는 상태에서 버튼을 클릭하면 줄거리 내용이 숨겨짐
+                    this.innerText = "펼치기▼"; // 버튼 텍스트를 '펼치기'로 변경
+                }
+            }
+        </script>
+
+        <footer class="footer_wrap">
+
+        </footer>
+    </div>
+
+</body>
+
+
+</html>
