@@ -94,14 +94,14 @@ include "db.php";
                         </div>
                     </div>
                     <div class="btn_submit_wrap" id="divBtnAuth">
-                        <!-- <button type="button" class="btn_submit" id="btnSend">회원가입</button> -->
-                        <input type="submit" class="btn_submit" value="회원가입">
+                        <button type="button" class="btn_submit" id="btnSend">회원가입</button>
+                        
                     </div>
-                    <!-- <script>
+                     <script>
                         document.getElementById("btnSend").onclick = function () {
                             location.href = "ccc_poll.html";
                         };
-                    </script> -->
+                    </script>
 
                 </form>
             </div>
